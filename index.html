@@ -1,53 +1,120 @@
-
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Любовь &amp; Егор · 19 августа 2025</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
-
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --bg: #ffffff;
-  --bg-warm: #fdfaf7;
-  --burg: #7d1f3a;
-  --burg-light: #f9eef1;
-  --burg-mid: #d4a0b0;
-  --gold: #c8943a;
-  --gold-light: #fdf6e8;
-  --text-dark: #1a1816;
-  --text-mid: #5a5650;
-  --text-light: #9c9690;
-  --border: rgba(26,24,22,0.08);
-  --border-mid: rgba(26,24,22,0.13);
+  --bg: #ffffff; --bg-warm: #fdfaf7;
+  --burg: #7d1f3a; --burg-light: #f9eef1; --burg-mid: #d4a0b0;
+  --gold: #c8943a; --gold-light: #fdf6e8;
+  --text-dark: #1a1816; --text-mid: #5a5650; --text-light: #9c9690;
+  --border: rgba(26,24,22,0.08); --border-mid: rgba(26,24,22,0.13);
 }
-.page { max-width: 740px; margin: 0 auto; padding: 0 0 60px; font-family: 'Jost', sans-serif; color: var(--text-dark); background: var(--bg); }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); font-family: 'Jost', sans-serif; color: var(--text-dark); overflow-x: hidden; }
+.page { max-width: 740px; margin: 0 auto; padding: 0 0 60px; }
 
-.hero { min-height: 540px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 64px 32px 52px; position: relative; }
-.hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--burg); }
-.hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.32em; color: var(--burg); text-transform: uppercase; margin-bottom: 28px; }
-.hero-names { font-family: 'Cormorant Garamond', serif; font-size: clamp(54px, 10vw, 90px); font-weight: 300; line-height: 1.0; color: var(--text-dark); }
-.hero-names span { font-style: italic; color: var(--burg); }
-.hero-amp { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 5vw, 46px); font-style: normal; color: var(--gold); display: block; margin: 6px 0; font-weight: 400; }
-.hero-ornament { display: flex; align-items: center; gap: 14px; margin: 26px 0 20px; }
+/* ── NAV ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: center; gap: 0;
+  background: rgba(255,255,255,0.92); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  transform: translateY(-100%);
+  transition: transform 0.4s ease;
+  padding: 0 16px;
+}
+.nav.visible { transform: translateY(0); }
+.nav a {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-mid); text-decoration: none; padding: 14px 16px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.nav a:hover, .nav a.active { color: var(--burg); border-bottom-color: var(--burg); }
+
+/* ── SCROLL REVEAL ── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100svh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 64px 32px 52px;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: var(--burg); transform: scaleX(0); transform-origin: left;
+  animation: stripeIn 1s ease 0.2s forwards;
+}
+@keyframes stripeIn { to { transform: scaleX(1); } }
+
+.hero-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.32em;
+  color: var(--burg); text-transform: uppercase; margin-bottom: 28px;
+  opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards;
+}
+.hero-names { font-family: 'Cormorant Garamond', serif; font-size: clamp(54px, 12vw, 92px); font-weight: 300; line-height: 1.0; }
+.hero-name-1 { font-style: italic; color: var(--burg); display: block; opacity: 0; animation: fadeUp 0.9s ease 0.55s forwards; }
+.hero-amp { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px,5vw,48px); font-style: normal; color: var(--gold); display: block; margin: 4px 0; font-weight: 400; opacity: 0; animation: fadeUp 0.9s ease 0.7s forwards; }
+.hero-name-2 { font-style: italic; color: var(--burg); display: block; opacity: 0; animation: fadeUp 0.9s ease 0.85s forwards; }
+
+.hero-ornament { display: flex; align-items: center; gap: 14px; margin: 28px 0 22px; width: 260px; opacity: 0; animation: fadeIn 0.8s ease 1.05s forwards; }
 .hero-ornament::before, .hero-ornament::after { content: ''; flex: 1; height: 1px; background: var(--border-mid); }
 .hero-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
-.hero-date { font-size: 13px; font-weight: 400; letter-spacing: 0.2em; color: var(--text-dark); text-transform: uppercase; }
-.hero-sub { font-size: 12px; color: var(--text-light); margin-top: 6px; }
-.hero-handwrite { font-family: 'Caveat', cursive; font-size: 18px; color: var(--burg); margin-top: 18px; display: inline-block; transform: rotate(-1deg); }
 
-.section { padding: 48px 32px; border-top: 1px solid var(--border); }
+.hero-date { font-size: 13px; font-weight: 400; letter-spacing: 0.2em; color: var(--text-dark); text-transform: uppercase; opacity: 0; animation: fadeUp 0.8s ease 1.1s forwards; }
+.hero-sub { font-size: 12px; color: var(--text-light); margin-top: 6px; opacity: 0; animation: fadeUp 0.8s ease 1.2s forwards; }
+.hero-handwrite { font-family: 'Caveat', cursive; font-size: 18px; color: var(--burg); margin-top: 20px; display: inline-block; transform: rotate(-1deg); opacity: 0; animation: fadeUp 0.8s ease 1.35s forwards; }
+
+/* COUNTDOWN */
+.countdown { display: flex; gap: 20px; justify-content: center; margin-top: 28px; opacity: 0; animation: fadeUp 0.8s ease 1.5s forwards; }
+.cd-unit { text-align: center; }
+.cd-num { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; font-style: italic; color: var(--burg); line-height: 1; display: block; min-width: 48px; }
+.cd-label { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); margin-top: 3px; display: block; }
+.cd-sep { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--gold); line-height: 1; align-self: flex-start; padding-top: 4px; }
+
+/* petals */
+.petal { position: absolute; pointer-events: none; opacity: 0; animation: floatPetal linear infinite; }
+@keyframes floatPetal {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.3; }
+  90%  { opacity: 0.15; }
+  100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ── SECTIONS ── */
+.section { padding: 52px 32px; border-top: 1px solid var(--border); }
 .section-label { font-size: 10px; font-weight: 500; letter-spacing: 0.32em; color: var(--burg); text-transform: uppercase; margin-bottom: 24px; }
 
-.photo-section { padding: 48px 32px; border-top: 1px solid var(--border); }
-.photo-section-label { font-size: 10px; font-weight: 500; letter-spacing: 0.32em; color: var(--burg); text-transform: uppercase; margin-bottom: 8px; }
+/* ── PHOTO ── */
+.photo-section { padding: 52px 32px; border-top: 1px solid var(--border); }
 .photo-intro { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; line-height: 1.7; color: var(--text-mid); margin-bottom: 28px; }
 .photo-intro em { color: var(--burg); font-style: italic; }
 .photo-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 8px; }
-.photo-placeholder { height: 230px; background: var(--bg-warm); border-radius: 14px; border: 1.5px dashed var(--border-mid); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+.photo-placeholder { height: 230px; background: var(--bg-warm); border-radius: 14px; border: 1.5px dashed var(--border-mid); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; transition: border-color 0.3s, transform 0.3s; }
+.photo-placeholder:hover { border-color: var(--burg-mid); transform: translateY(-3px); }
 .photo-placeholder-icon { font-size: 28px; color: var(--burg-mid); }
 .photo-placeholder-text { font-size: 12px; color: var(--text-light); font-style: italic; text-align: center; padding: 0 20px; line-height: 1.6; }
 .photo-caption { font-family: 'Caveat', cursive; font-size: 15px; color: var(--text-light); text-align: center; margin-top: 6px; }
 
+/* ── INVITE ── */
 .invite-card { background: var(--bg-warm); border: 1px solid var(--border); border-radius: 18px; padding: 38px 42px; position: relative; overflow: hidden; }
 .invite-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--burg); border-radius: 18px 0 0 18px; }
-.invite-body { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 300; line-height: 1.9; color: var(--text-dark); }
+.invite-body { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 300; line-height: 1.9; }
 .invite-body em { font-style: italic; color: var(--burg); }
 .invite-body strong { font-weight: 400; color: var(--burg); }
 .invite-aside { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border); font-size: 13px; font-weight: 300; line-height: 1.7; color: var(--text-mid); font-style: italic; }
@@ -58,119 +125,179 @@
 .counter-num { font-family: 'Cormorant Garamond', serif; font-size: 62px; font-weight: 300; font-style: italic; color: white; line-height: 1; }
 .counter-num-label { font-size: 11px; letter-spacing: 0.2em; color: rgba(255,255,255,0.7); text-transform: uppercase; margin-top: 2px; }
 .counter-text-block { background: var(--burg-light); padding: 24px 28px; flex: 1; display: flex; align-items: center; }
-.counter-text { font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--text-dark); }
+.counter-text { font-size: 15px; font-weight: 300; line-height: 1.75; }
 .counter-text strong { font-weight: 500; }
 
+/* ── TIMELINE ── */
 .timeline { display: flex; flex-direction: column; }
 .tl-item { display: grid; grid-template-columns: 64px 2px 1fr; gap: 0 22px; padding-bottom: 32px; }
 .tl-item:last-child { padding-bottom: 0; }
 .tl-date { font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; font-style: italic; color: var(--burg); text-align: right; line-height: 1.1; padding-top: 1px; }
 .tl-date small { display: block; font-family: 'Jost', sans-serif; font-size: 10px; font-style: normal; letter-spacing: 0.15em; color: var(--text-light); text-transform: uppercase; margin-top: 3px; }
 .tl-line { background: var(--border-mid); position: relative; }
-.tl-line::before { content: ''; position: absolute; top: 7px; left: 50%; transform: translateX(-50%); width: 8px; height: 8px; border-radius: 50%; background: var(--burg); }
-.tl-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--text-dark); margin-bottom: 6px; }
+.tl-line::before { content: ''; position: absolute; top: 7px; left: 50%; transform: translateX(-50%); width: 8px; height: 8px; border-radius: 50%; background: var(--burg); transition: transform 0.3s; }
+.tl-item:hover .tl-line::before { transform: translateX(-50%) scale(1.5); }
+.tl-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; margin-bottom: 6px; }
 .tl-body { font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--text-mid); }
-.tl-badge { display: inline-block; margin-top: 8px; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 11px; border-radius: 20px; background: var(--burg-light); color: var(--burg); }
+.tl-badge { display: inline-block; margin-top: 8px; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 11px; border-radius: 20px; background: var(--burg-light); color: var(--burg); transition: background 0.25s, color 0.25s; }
+.tl-item:hover .tl-badge { background: var(--burg); color: white; }
 
+/* ── INFO ── */
 .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.info-card { background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+.info-card { background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 20px; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; }
+.info-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(125,31,58,0.08); border-color: var(--burg-mid); }
 .info-card-icon { font-size: 20px; color: var(--burg); margin-bottom: 10px; }
 .info-card-title { font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-light); margin-bottom: 5px; }
-.info-card-value { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 400; line-height: 1.6; color: var(--text-dark); }
+.info-card-value { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 400; line-height: 1.6; }
 .info-card-link { font-size: 12px; color: var(--burg); margin-top: 5px; display: block; }
 
-.gift-block { background: var(--burg-light); border-radius: 14px; padding: 28px 32px; display: flex; gap: 20px; align-items: flex-start; border: 1px solid rgba(125,31,58,0.1); }
-.gift-icon { font-size: 26px; color: var(--burg); flex-shrink: 0; padding-top: 2px; }
-.gift-title { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 400; color: var(--text-dark); margin-bottom: 8px; }
+/* MAP */
+.map-wrap { margin-top: 20px; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); height: 280px; position: relative; }
+.map-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+.map-label { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); background: white; border: 1px solid var(--border); border-radius: 20px; padding: 6px 14px; font-size: 12px; color: var(--burg); font-weight: 400; pointer-events: none; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+
+/* ── GIFTS ── */
+.gift-block { background: var(--burg-light); border-radius: 14px; padding: 28px 32px; display: flex; gap: 20px; align-items: flex-start; border: 1px solid rgba(125,31,58,0.1); transition: box-shadow 0.3s; }
+.gift-block:hover { box-shadow: 0 6px 20px rgba(125,31,58,0.1); }
+.gift-icon { font-size: 26px; flex-shrink: 0; padding-top: 2px; }
+.gift-title { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 400; margin-bottom: 8px; }
 .gift-text { font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--text-mid); }
 .gift-text strong { font-weight: 500; color: var(--burg); }
 .dress-block { background: var(--gold-light); border-radius: 14px; padding: 26px 32px; margin-top: 14px; border: 1px solid rgba(200,148,58,0.15); }
-.dress-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--text-dark); margin-bottom: 8px; }
+.dress-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; margin-bottom: 8px; }
 .dress-text { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--text-mid); margin-bottom: 10px; }
 .dress-placeholder { font-size: 12px; font-style: italic; color: #a07428; border: 1px dashed rgba(200,148,58,0.45); border-radius: 6px; padding: 10px 16px; display: inline-block; }
 
+/* ── FORM ── */
 .form-wrap { max-width: 520px; }
 .field { margin-bottom: 22px; }
 .field-label { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-mid); display: block; margin-bottom: 8px; }
-.field input[type=text], .field textarea { width: 100%; border: 1px solid var(--border-mid); border-radius: 10px; padding: 11px 14px; font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 300; background: var(--bg); color: var(--text-dark); outline: none; transition: border-color 0.2s; }
-.field input:focus, .field textarea:focus { border-color: var(--burg); }
+.field input[type=text], .field textarea { width: 100%; border: 1px solid var(--border-mid); border-radius: 10px; padding: 11px 14px; font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 300; background: var(--bg); color: var(--text-dark); outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+.field input:focus, .field textarea:focus { border-color: var(--burg); box-shadow: 0 0 0 3px rgba(125,31,58,0.08); }
 .field textarea { resize: vertical; min-height: 80px; }
 .radio-group { display: flex; gap: 10px; flex-wrap: wrap; }
 .radio-option { flex: 1; min-width: 120px; border: 1px solid var(--border-mid); border-radius: 10px; padding: 12px 14px; cursor: pointer; background: var(--bg); transition: all 0.2s; }
+.radio-option:hover { border-color: var(--burg-mid); }
 .radio-option:has(input:checked) { border-color: var(--burg); background: var(--burg-light); }
 .radio-option input { display: none; }
-.radio-label { font-size: 14px; font-weight: 300; color: var(--text-dark); display: block; }
+.radio-label { font-size: 14px; font-weight: 300; display: block; }
 .radio-sub { font-size: 11px; color: var(--text-light); display: block; margin-top: 2px; }
 .placeholder-field { font-size: 12px; font-style: italic; color: var(--text-light); border: 1px dashed var(--border-mid); border-radius: 10px; padding: 14px; text-align: center; }
-.submit-btn { width: 100%; background: var(--burg); color: white; border: none; border-radius: 10px; padding: 15px; font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 400; letter-spacing: 0.12em; cursor: pointer; transition: background 0.2s; margin-top: 8px; }
-.submit-btn:hover { background: #6a1a31; }
-.success-msg { display: none; text-align: center; padding: 40px 32px; background: var(--burg-light); border-radius: 14px; }
-.success-msg.show { display: block; }
-.success-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-style: italic; color: var(--burg); margin-bottom: 10px; }
-.success-sub { font-size: 14px; color: var(--text-mid); line-height: 1.7; }
+.submit-btn { width: 100%; background: var(--burg); color: white; border: none; border-radius: 10px; padding: 15px; font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 400; letter-spacing: 0.12em; cursor: pointer; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; margin-top: 8px; }
+.submit-btn:hover { background: #6a1a31; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(125,31,58,0.25); }
+.submit-btn:active { transform: translateY(0); }
 
+/* SUCCESS */
+.success-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(253,238,241,0.97); flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px; }
+.success-overlay.show { display: flex; animation: fadeIn 0.5s ease forwards; }
+.success-confetti { font-size: 40px; margin-bottom: 24px; animation: bounce 0.6s ease infinite alternate; }
+@keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-10px); } }
+.success-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-style: italic; color: var(--burg); margin-bottom: 12px; }
+.success-name { color: var(--gold); }
+.success-sub { font-size: 16px; font-weight: 300; line-height: 1.8; color: var(--text-mid); max-width: 360px; }
+.success-close { margin-top: 32px; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--burg); cursor: pointer; border-bottom: 1px solid var(--burg-mid); padding-bottom: 2px; background: none; border-top: none; border-left: none; border-right: none; font-family: 'Jost', sans-serif; }
+
+/* confetti canvas */
+#confettiCanvas { position: fixed; inset: 0; pointer-events: none; z-index: 201; }
+
+/* ── FOOTER ── */
 .footer { text-align: center; padding: 52px 32px 40px; border-top: 1px solid var(--border); }
 .footer-names { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-style: italic; font-weight: 300; color: var(--burg); }
 .footer-amp { font-style: normal; color: var(--gold); }
 .footer-sub { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-light); margin-top: 10px; }
 .footer-handwrite { font-family: 'Caveat', cursive; font-size: 17px; color: var(--burg); margin-top: 16px; display: block; }
 
+@keyframes heartbeat { 0%,100%{transform:scale(1)} 14%{transform:scale(1.2)} 28%{transform:scale(1)} 42%{transform:scale(1.15)} 56%{transform:scale(1)} }
+.pulse { display: inline-block; animation: heartbeat 2.4s ease-in-out infinite; }
+
 @media (max-width: 500px) {
+  .nav a { padding: 12px 10px; font-size: 10px; letter-spacing: 0.12em; }
   .info-grid, .photo-row { grid-template-columns: 1fr; }
   .invite-card { padding: 24px 26px; }
   .hero-names { font-size: 46px; }
   .gift-block { flex-direction: column; gap: 12px; }
   .counter-strip { flex-direction: column; }
+  .countdown { gap: 12px; }
+  .cd-num { font-size: 28px; }
 }
 </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav" role="navigation" aria-label="Навигация">
+  <a href="#invite">Приглашение</a>
+  <a href="#programme">Программа</a>
+  <a href="#place">Место</a>
+  <a href="#rsvp">Анкета</a>
+</nav>
+
+<!-- SUCCESS OVERLAY -->
+<canvas id="confettiCanvas"></canvas>
+<div class="success-overlay" id="successOverlay" role="dialog" aria-modal="true">
+  <div class="success-confetti" aria-hidden="true">🎉</div>
+  <p class="success-title">Ура, <span class="success-name" id="successName">друг</span>!</p>
+  <p class="success-sub">Твой ответ получен. Мы очень рады — ждём тебя 19 августа в Есенинской Руси. Будет тепло, вкусно и хорошо. <span class="pulse">❤️</span></p>
+  <button class="success-close" onclick="closeSuccess()">Вернуться на страницу</button>
+</div>
 
 <div class="page" role="main">
-  <h2 class="sr-only" style="position:absolute;left:-9999px">Свадебное приглашение Любови и Егора — 19 августа 2025</h2>
 
-  <section class="hero">
+  <!-- HERO -->
+  <section class="hero" id="hero">
     <p class="hero-eyebrow">Приглашение на свадьбу</p>
     <div class="hero-names">
-      <span>Любовь</span>
+      <span class="hero-name-1">Любовь</span>
       <div class="hero-amp">&amp;</div>
-      <span>Егор</span>
+      <span class="hero-name-2">Егор</span>
     </div>
     <div class="hero-ornament" aria-hidden="true"><div class="hero-dot"></div></div>
     <p class="hero-date">19 — 21 августа 2025</p>
     <p class="hero-sub">Глэмпинг · Norke Есенинская Русь</p>
     <span class="hero-handwrite">наконец-то! 🎉</span>
+    <div class="countdown" id="countdown" aria-label="Обратный отсчёт до свадьбы">
+      <div class="cd-unit"><span class="cd-num" id="cd-d">--</span><span class="cd-label">дней</span></div>
+      <span class="cd-sep" aria-hidden="true">·</span>
+      <div class="cd-unit"><span class="cd-num" id="cd-h">--</span><span class="cd-label">часов</span></div>
+      <span class="cd-sep" aria-hidden="true">·</span>
+      <div class="cd-unit"><span class="cd-num" id="cd-m">--</span><span class="cd-label">минут</span></div>
+      <span class="cd-sep" aria-hidden="true">·</span>
+      <div class="cd-unit"><span class="cd-num" id="cd-s">--</span><span class="cd-label">секунд</span></div>
+    </div>
   </section>
 
-  <section class="photo-section">
-    <p class="photo-section-label">Всё началось давно</p>
-    <p class="photo-intro">Где-то там, в прошлом, росли два маленьких человека — понятия не имея, что судьба уже <em>всё решила за них</em>.</p>
+  <!-- ФОТО -->
+  <section class="photo-section" id="photos">
+    <p class="section-label reveal">Всё началось давно</p>
+    <p class="photo-intro reveal reveal-delay-1">Где-то там, в прошлом, росли два маленьких человека — понятия не имея, что судьба уже <em>всё решила за них</em>.</p>
     <div class="photo-row">
-      <div>
+      <div class="reveal reveal-delay-1">
         <div class="photo-placeholder">
-          <div class="photo-placeholder-icon" aria-hidden="true"><i class="ti ti-photo"></i></div>
+          <div class="photo-placeholder-icon">📷</div>
           <p class="photo-placeholder-text">Детское фото Любы<br>— скоро появится</p>
         </div>
         <p class="photo-caption">маленькая Люба</p>
       </div>
-      <div>
+      <div class="reveal reveal-delay-2">
         <div class="photo-placeholder">
-          <div class="photo-placeholder-icon" aria-hidden="true"><i class="ti ti-photo"></i></div>
+          <div class="photo-placeholder-icon">📷</div>
           <p class="photo-placeholder-text">Детское фото Егора<br>— скоро появится</p>
         </div>
         <p class="photo-caption">маленький Егор</p>
       </div>
     </div>
-    <p class="photo-intro" style="margin-top:30px; margin-bottom:18px">Прошло время — и они всё-таки <em>нашли друг друга</em>.</p>
+    <p class="photo-intro reveal" style="margin-top:32px;margin-bottom:18px">Прошло время — и они всё-таки <em>нашли друг друга</em>.</p>
     <div class="photo-row">
-      <div>
+      <div class="reveal reveal-delay-1">
         <div class="photo-placeholder" style="height:260px">
-          <div class="photo-placeholder-icon" aria-hidden="true"><i class="ti ti-camera"></i></div>
+          <div class="photo-placeholder-icon">📸</div>
           <p class="photo-placeholder-text">Наше совместное фото<br>— появится здесь</p>
         </div>
         <p class="photo-caption">десять лет спустя</p>
       </div>
-      <div>
+      <div class="reveal reveal-delay-2">
         <div class="photo-placeholder" style="height:260px">
-          <div class="photo-placeholder-icon" aria-hidden="true"><i class="ti ti-heart"></i></div>
+          <div class="photo-placeholder-icon"><span class="pulse">❤️</span></div>
           <p class="photo-placeholder-text">Ещё одно наше фото<br>— скоро здесь</p>
         </div>
         <p class="photo-caption">и вот мы здесь</p>
@@ -178,9 +305,10 @@
     </div>
   </section>
 
-  <section class="section">
-    <p class="section-label">Приглашение</p>
-    <div class="invite-card">
+  <!-- INVITE -->
+  <section class="section" id="invite">
+    <p class="section-label reveal">Приглашение</p>
+    <div class="invite-card reveal reveal-delay-1">
       <p class="invite-body">
         Дорогой <em id="guestGreeting">[имя гостя]</em>,<br><br>
         знаешь, говорят, что хорошее вино не торопится.
@@ -196,7 +324,7 @@
       <p class="invite-aside">Без галстуков, без протокола — просто все самые близкие люди под открытым небом. Именно так мы это и представляли.</p>
       <span class="invite-handwrite">Очень ждём тебя ✦</span>
     </div>
-    <div class="counter-strip">
+    <div class="counter-strip reveal reveal-delay-2">
       <div class="counter-num-block">
         <div class="counter-num">10</div>
         <div class="counter-num-label">лет вместе</div>
@@ -207,10 +335,11 @@
     </div>
   </section>
 
-  <section class="section">
-    <p class="section-label">Как это будет</p>
+  <!-- TIMELINE -->
+  <section class="section" id="programme">
+    <p class="section-label reveal">Как это будет</p>
     <div class="timeline">
-      <div class="tl-item">
+      <div class="tl-item reveal reveal-delay-1">
         <div class="tl-date">18<small>авг</small></div>
         <div class="tl-line"></div>
         <div>
@@ -219,7 +348,7 @@
           <span class="tl-badge">только вдвоём</span>
         </div>
       </div>
-      <div class="tl-item">
+      <div class="tl-item reveal reveal-delay-2">
         <div class="tl-date">19<small>авг</small></div>
         <div class="tl-line"></div>
         <div>
@@ -228,7 +357,7 @@
           <span class="tl-badge">банкет · природа</span>
         </div>
       </div>
-      <div class="tl-item">
+      <div class="tl-item reveal reveal-delay-3">
         <div class="tl-date">19–21<small>авг</small></div>
         <div class="tl-line"></div>
         <div>
@@ -240,52 +369,64 @@
     </div>
   </section>
 
-  <section class="section">
-    <p class="section-label">Всё, что нужно знать</p>
+  <!-- INFO + MAP -->
+  <section class="section" id="place">
+    <p class="section-label reveal">Всё, что нужно знать</p>
     <div class="info-grid">
-      <div class="info-card">
-        <div class="info-card-icon" aria-hidden="true"><i class="ti ti-map-pin"></i></div>
+      <div class="info-card reveal reveal-delay-1">
+        <div class="info-card-icon">📍</div>
         <p class="info-card-title">Место</p>
-        <p class="info-card-value">Norke<br>Есенинская Русь</p>
-        <a class="info-card-link" href="https://yandex.ru/maps/?text=Norke+Есенинская+Русь">Открыть на карте ↗</a>
+        <p class="info-card-value">Norke · Есенинская Русь</p>
+        <a class="info-card-link" href="https://yandex.ru/maps/?text=Norke+Есенинская+Русь" target="_blank" rel="noopener">Открыть на карте ↗</a>
       </div>
-      <div class="info-card">
-        <div class="info-card-icon" aria-hidden="true"><i class="ti ti-calendar"></i></div>
+      <div class="info-card reveal reveal-delay-2">
+        <div class="info-card-icon">📅</div>
         <p class="info-card-title">Даты</p>
-        <p class="info-card-value">19 — 21 августа<br>2025</p>
+        <p class="info-card-value">19 — 21 августа 2025</p>
       </div>
-      <div class="info-card">
-        <div class="info-card-icon" aria-hidden="true"><i class="ti ti-clock"></i></div>
+      <div class="info-card reveal reveal-delay-3">
+        <div class="info-card-icon">🕐</div>
         <p class="info-card-title">Время сбора</p>
         <p class="info-card-value" style="font-style:italic;color:var(--text-light);font-size:15px">[ Будет добавлено ]</p>
       </div>
-      <div class="info-card">
-        <div class="info-card-icon" aria-hidden="true"><i class="ti ti-car"></i></div>
+      <div class="info-card reveal reveal-delay-4">
+        <div class="info-card-icon">🚗</div>
         <p class="info-card-title">Как добраться</p>
         <p class="info-card-value" style="font-style:italic;color:var(--text-light);font-size:15px">[ Маршрут / трансфер ]</p>
       </div>
     </div>
+    <div class="map-wrap reveal reveal-delay-2" style="margin-top:20px">
+      <iframe
+        src="https://yandex.ru/map-widget/v1/?ll=40.655800%2C54.642800&z=13&pt=40.655800%2C54.642800,pm2rdm&text=Norke+%D0%95%D1%81%D0%B5%D0%BD%D0%B8%D0%BD%D1%81%D0%BA%D0%B0%D1%8F+%D0%A0%D1%83%D1%81%D1%8C"
+        allowfullscreen
+        title="Карта: Norke Есенинская Русь"
+        loading="lazy"
+      ></iframe>
+      <div class="map-label" aria-hidden="true">📍 Norke · Есенинская Русь</div>
+    </div>
   </section>
 
+  <!-- GIFTS -->
   <section class="section">
-    <p class="section-label">Важные мелочи</p>
-    <div class="gift-block">
-      <div class="gift-icon" aria-hidden="true"><i class="ti ti-bottle"></i></div>
+    <p class="section-label reveal">Важные мелочи</p>
+    <div class="gift-block reveal reveal-delay-1">
+      <div class="gift-icon">🍷</div>
       <div>
         <p class="gift-title">Цветы — нет, бутылка — да</p>
         <p class="gift-text">Мы знаем, что цветы красивы. Но они завянут раньше, чем закончится медовый месяц. Поэтому просьба простая: <strong>принеси любимую бутылку</strong> — вино, виски, шампанское, наливку от бабушки. Мы обязательно откроем её вместе, и это будет вкуснее любого букета.</p>
       </div>
     </div>
-    <div class="dress-block">
-      <p class="dress-title"><i class="ti ti-shirt" aria-hidden="true" style="font-size:17px;vertical-align:-2px;margin-right:8px;color:var(--gold)"></i>Дресс-код</p>
+    <div class="dress-block reveal reveal-delay-2">
+      <p class="dress-title">👗 Дресс-код</p>
       <p class="dress-text">Мы в глэмпинге — трава под ногами, небо над головой. Хочется, чтобы всем было комфортно и фотографии получились гармоничными.</p>
       <span class="dress-placeholder">[ Описание дресс-кода будет добавлено ]</span>
     </div>
   </section>
 
-  <section class="section">
-    <p class="section-label">Твой ответ</p>
-    <div class="form-wrap" id="rsvpForm">
+  <!-- FORM -->
+  <section class="section" id="rsvp">
+    <p class="section-label reveal">Твой ответ</p>
+    <div class="form-wrap reveal reveal-delay-1" id="rsvpForm">
       <div class="field">
         <label class="field-label">Придёшь?</label>
         <div class="radio-group">
@@ -319,29 +460,139 @@
       </div>
       <button class="submit-btn" onclick="handleSubmit()">Отправить ответ</button>
     </div>
-    <div class="success-msg" id="successMsg">
-      <p class="success-title">Получили, спасибо!</p>
-      <p class="success-sub">Твой ответ у нас. Очень ждём встречи —<br>будет тепло, вкусно и хорошо.</p>
-    </div>
   </section>
 
   <footer class="footer">
-    <p class="footer-names">
-      <span>Любовь</span> <span class="footer-amp">&amp;</span> <span>Егор</span>
-    </p>
+    <p class="footer-names">Любовь <span class="footer-amp">&amp;</span> Егор</p>
     <p class="footer-sub">С любовью и нетерпением ждём тебя</p>
     <span class="footer-handwrite">19 августа · Есенинская Русь 🌿</span>
   </footer>
 </div>
 
 <script>
-  const params = new URLSearchParams(window.location.search);
-  const guest = params.get('guest');
-  if (guest) { const el = document.getElementById('guestGreeting'); if (el) el.textContent = guest; }
-  function handleSubmit() {
-    const attend = document.querySelector('input[name="attend"]:checked');
-    if (!attend) { alert('Пожалуйста, укажи, придёшь ли ты'); return; }
-    document.getElementById('rsvpForm').style.display = 'none';
-    document.getElementById('successMsg').classList.add('show');
+// ── ПЕРСОНАЛИЗАЦИЯ ──
+const params = new URLSearchParams(window.location.search);
+const guestName = params.get('guest') || '';
+if (guestName) {
+  document.getElementById('guestGreeting').textContent = guestName;
+  document.getElementById('successName').textContent = guestName;
+}
+
+// ── ОБРАТНЫЙ ОТСЧЁТ ──
+const weddingDate = new Date('2025-08-19T12:00:00');
+function updateCountdown() {
+  const diff = weddingDate - new Date();
+  if (diff <= 0) {
+    document.getElementById('countdown').innerHTML = '<span style="font-family:Caveat,cursive;font-size:22px;color:var(--burg)">Сегодня наш день! 🎉</span>';
+    return;
   }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-d').textContent = d;
+  document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+  document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ── SCROLL REVEAL ──
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ── NAV (показать после героя) ──
+const nav = document.getElementById('mainNav');
+const heroEl = document.getElementById('hero');
+const navObserver = new IntersectionObserver(entries => {
+  nav.classList.toggle('visible', !entries[0].isIntersecting);
+}, { threshold: 0 });
+navObserver.observe(heroEl);
+
+// Активная ссылка
+const sections = ['invite','programme','place','rsvp'];
+const activeObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    const link = nav.querySelector(`a[href="#${e.target.id}"]`);
+    if (link) link.classList.toggle('active', e.isIntersecting);
+  });
+}, { threshold: 0.4 });
+sections.forEach(id => { const el = document.getElementById(id); if (el) activeObserver.observe(el); });
+
+// ── ПАРАЛЛАКС В ГЕРОЕ ──
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  const names = document.querySelector('.hero-names');
+  if (names) names.style.transform = `translateY(${y * 0.25}px)`;
+}, { passive: true });
+
+// ── ЛЕПЕСТКИ В ГЕРОЕ ──
+const heroSection = document.getElementById('hero');
+const symbols = ['🌸','✦','🌿','·','❋','✿','°'];
+for (let i = 0; i < 14; i++) {
+  const p = document.createElement('span');
+  p.className = 'petal'; p.setAttribute('aria-hidden','true');
+  p.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+  p.style.cssText = `left:${Math.random()*100}%;bottom:-20px;animation-duration:${8+Math.random()*10}s;animation-delay:${Math.random()*8}s;font-size:${10+Math.random()*8}px`;
+  heroSection.appendChild(p);
+}
+
+// ── КОНФЕТТИ ──
+const canvas = document.getElementById('confettiCanvas');
+const ctx = canvas.getContext('2d');
+let particles = [], animFrame;
+function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+function launchConfetti() {
+  particles = [];
+  for (let i = 0; i < 120; i++) {
+    particles.push({
+      x: Math.random() * canvas.width, y: -10,
+      vx: (Math.random()-0.5)*4, vy: 2+Math.random()*4,
+      r: 4+Math.random()*6, rot: Math.random()*360,
+      color: ['#7d1f3a','#c8943a','#f9eef1','#d4a0b0','#fdf6e8'][Math.floor(Math.random()*5)],
+      shape: Math.random() > 0.5 ? 'rect' : 'circle'
+    });
+  }
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180);
+      ctx.fillStyle = p.color;
+      if (p.shape === 'rect') ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*0.6);
+      else { ctx.beginPath(); ctx.arc(0,0,p.r/2,0,Math.PI*2); ctx.fill(); }
+      ctx.restore();
+      p.x += p.vx; p.y += p.vy; p.rot += 3; p.vy += 0.05;
+    });
+    particles = particles.filter(p => p.y < canvas.height + 20);
+    if (particles.length) animFrame = requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  cancelAnimationFrame(animFrame);
+  draw();
+}
+
+// ── ФОРМА ──
+function handleSubmit() {
+  const attend = document.querySelector('input[name="attend"]:checked');
+  if (!attend) { alert('Пожалуйста, укажи, придёшь ли ты'); return; }
+  launchConfetti();
+  document.getElementById('successOverlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeSuccess() {
+  document.getElementById('successOverlay').classList.remove('show');
+  document.body.style.overflow = '';
+  cancelAnimationFrame(animFrame);
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  document.getElementById('rsvpForm').style.opacity = '0.5';
+  document.getElementById('rsvpForm').style.pointerEvents = 'none';
+}
 </script>
+</body>
+</html>
