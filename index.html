@@ -1,0 +1,347 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #ffffff;
+  --bg-warm: #fdfaf7;
+  --burg: #7d1f3a;
+  --burg-light: #f9eef1;
+  --burg-mid: #d4a0b0;
+  --gold: #c8943a;
+  --gold-light: #fdf6e8;
+  --text-dark: #1a1816;
+  --text-mid: #5a5650;
+  --text-light: #9c9690;
+  --border: rgba(26,24,22,0.08);
+  --border-mid: rgba(26,24,22,0.13);
+}
+.page { max-width: 740px; margin: 0 auto; padding: 0 0 60px; font-family: 'Jost', sans-serif; color: var(--text-dark); background: var(--bg); }
+
+.hero { min-height: 540px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 64px 32px 52px; position: relative; }
+.hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--burg); }
+.hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.32em; color: var(--burg); text-transform: uppercase; margin-bottom: 28px; }
+.hero-names { font-family: 'Cormorant Garamond', serif; font-size: clamp(54px, 10vw, 90px); font-weight: 300; line-height: 1.0; color: var(--text-dark); }
+.hero-names span { font-style: italic; color: var(--burg); }
+.hero-amp { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 5vw, 46px); font-style: normal; color: var(--gold); display: block; margin: 6px 0; font-weight: 400; }
+.hero-ornament { display: flex; align-items: center; gap: 14px; margin: 26px 0 20px; }
+.hero-ornament::before, .hero-ornament::after { content: ''; flex: 1; height: 1px; background: var(--border-mid); }
+.hero-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+.hero-date { font-size: 13px; font-weight: 400; letter-spacing: 0.2em; color: var(--text-dark); text-transform: uppercase; }
+.hero-sub { font-size: 12px; color: var(--text-light); margin-top: 6px; }
+.hero-handwrite { font-family: 'Caveat', cursive; font-size: 18px; color: var(--burg); margin-top: 18px; display: inline-block; transform: rotate(-1deg); }
+
+.section { padding: 48px 32px; border-top: 1px solid var(--border); }
+.section-label { font-size: 10px; font-weight: 500; letter-spacing: 0.32em; color: var(--burg); text-transform: uppercase; margin-bottom: 24px; }
+
+.photo-section { padding: 48px 32px; border-top: 1px solid var(--border); }
+.photo-section-label { font-size: 10px; font-weight: 500; letter-spacing: 0.32em; color: var(--burg); text-transform: uppercase; margin-bottom: 8px; }
+.photo-intro { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; line-height: 1.7; color: var(--text-mid); margin-bottom: 28px; }
+.photo-intro em { color: var(--burg); font-style: italic; }
+.photo-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 8px; }
+.photo-placeholder { height: 230px; background: var(--bg-warm); border-radius: 14px; border: 1.5px dashed var(--border-mid); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+.photo-placeholder-icon { font-size: 28px; color: var(--burg-mid); }
+.photo-placeholder-text { font-size: 12px; color: var(--text-light); font-style: italic; text-align: center; padding: 0 20px; line-height: 1.6; }
+.photo-caption { font-family: 'Caveat', cursive; font-size: 15px; color: var(--text-light); text-align: center; margin-top: 6px; }
+
+.invite-card { background: var(--bg-warm); border: 1px solid var(--border); border-radius: 18px; padding: 38px 42px; position: relative; overflow: hidden; }
+.invite-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--burg); border-radius: 18px 0 0 18px; }
+.invite-body { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 300; line-height: 1.9; color: var(--text-dark); }
+.invite-body em { font-style: italic; color: var(--burg); }
+.invite-body strong { font-weight: 400; color: var(--burg); }
+.invite-aside { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border); font-size: 13px; font-weight: 300; line-height: 1.7; color: var(--text-mid); font-style: italic; }
+.invite-handwrite { font-family: 'Caveat', cursive; font-size: 21px; color: var(--burg); display: block; margin-top: 20px; }
+
+.counter-strip { display: flex; align-items: stretch; margin-top: 20px; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); }
+.counter-num-block { background: var(--burg); padding: 24px 28px; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; }
+.counter-num { font-family: 'Cormorant Garamond', serif; font-size: 62px; font-weight: 300; font-style: italic; color: white; line-height: 1; }
+.counter-num-label { font-size: 11px; letter-spacing: 0.2em; color: rgba(255,255,255,0.7); text-transform: uppercase; margin-top: 2px; }
+.counter-text-block { background: var(--burg-light); padding: 24px 28px; flex: 1; display: flex; align-items: center; }
+.counter-text { font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--text-dark); }
+.counter-text strong { font-weight: 500; }
+
+.timeline { display: flex; flex-direction: column; }
+.tl-item { display: grid; grid-template-columns: 64px 2px 1fr; gap: 0 22px; padding-bottom: 32px; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-date { font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; font-style: italic; color: var(--burg); text-align: right; line-height: 1.1; padding-top: 1px; }
+.tl-date small { display: block; font-family: 'Jost', sans-serif; font-size: 10px; font-style: normal; letter-spacing: 0.15em; color: var(--text-light); text-transform: uppercase; margin-top: 3px; }
+.tl-line { background: var(--border-mid); position: relative; }
+.tl-line::before { content: ''; position: absolute; top: 7px; left: 50%; transform: translateX(-50%); width: 8px; height: 8px; border-radius: 50%; background: var(--burg); }
+.tl-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--text-dark); margin-bottom: 6px; }
+.tl-body { font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--text-mid); }
+.tl-badge { display: inline-block; margin-top: 8px; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 11px; border-radius: 20px; background: var(--burg-light); color: var(--burg); }
+
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.info-card { background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+.info-card-icon { font-size: 20px; color: var(--burg); margin-bottom: 10px; }
+.info-card-title { font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-light); margin-bottom: 5px; }
+.info-card-value { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 400; line-height: 1.6; color: var(--text-dark); }
+.info-card-link { font-size: 12px; color: var(--burg); margin-top: 5px; display: block; }
+
+.gift-block { background: var(--burg-light); border-radius: 14px; padding: 28px 32px; display: flex; gap: 20px; align-items: flex-start; border: 1px solid rgba(125,31,58,0.1); }
+.gift-icon { font-size: 26px; color: var(--burg); flex-shrink: 0; padding-top: 2px; }
+.gift-title { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 400; color: var(--text-dark); margin-bottom: 8px; }
+.gift-text { font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--text-mid); }
+.gift-text strong { font-weight: 500; color: var(--burg); }
+.dress-block { background: var(--gold-light); border-radius: 14px; padding: 26px 32px; margin-top: 14px; border: 1px solid rgba(200,148,58,0.15); }
+.dress-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--text-dark); margin-bottom: 8px; }
+.dress-text { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--text-mid); margin-bottom: 10px; }
+.dress-placeholder { font-size: 12px; font-style: italic; color: #a07428; border: 1px dashed rgba(200,148,58,0.45); border-radius: 6px; padding: 10px 16px; display: inline-block; }
+
+.form-wrap { max-width: 520px; }
+.field { margin-bottom: 22px; }
+.field-label { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-mid); display: block; margin-bottom: 8px; }
+.field input[type=text], .field textarea { width: 100%; border: 1px solid var(--border-mid); border-radius: 10px; padding: 11px 14px; font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 300; background: var(--bg); color: var(--text-dark); outline: none; transition: border-color 0.2s; }
+.field input:focus, .field textarea:focus { border-color: var(--burg); }
+.field textarea { resize: vertical; min-height: 80px; }
+.radio-group { display: flex; gap: 10px; flex-wrap: wrap; }
+.radio-option { flex: 1; min-width: 120px; border: 1px solid var(--border-mid); border-radius: 10px; padding: 12px 14px; cursor: pointer; background: var(--bg); transition: all 0.2s; }
+.radio-option:has(input:checked) { border-color: var(--burg); background: var(--burg-light); }
+.radio-option input { display: none; }
+.radio-label { font-size: 14px; font-weight: 300; color: var(--text-dark); display: block; }
+.radio-sub { font-size: 11px; color: var(--text-light); display: block; margin-top: 2px; }
+.placeholder-field { font-size: 12px; font-style: italic; color: var(--text-light); border: 1px dashed var(--border-mid); border-radius: 10px; padding: 14px; text-align: center; }
+.submit-btn { width: 100%; background: var(--burg); color: white; border: none; border-radius: 10px; padding: 15px; font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 400; letter-spacing: 0.12em; cursor: pointer; transition: background 0.2s; margin-top: 8px; }
+.submit-btn:hover { background: #6a1a31; }
+.success-msg { display: none; text-align: center; padding: 40px 32px; background: var(--burg-light); border-radius: 14px; }
+.success-msg.show { display: block; }
+.success-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-style: italic; color: var(--burg); margin-bottom: 10px; }
+.success-sub { font-size: 14px; color: var(--text-mid); line-height: 1.7; }
+
+.footer { text-align: center; padding: 52px 32px 40px; border-top: 1px solid var(--border); }
+.footer-names { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-style: italic; font-weight: 300; color: var(--burg); }
+.footer-amp { font-style: normal; color: var(--gold); }
+.footer-sub { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-light); margin-top: 10px; }
+.footer-handwrite { font-family: 'Caveat', cursive; font-size: 17px; color: var(--burg); margin-top: 16px; display: block; }
+
+@media (max-width: 500px) {
+  .info-grid, .photo-row { grid-template-columns: 1fr; }
+  .invite-card { padding: 24px 26px; }
+  .hero-names { font-size: 46px; }
+  .gift-block { flex-direction: column; gap: 12px; }
+  .counter-strip { flex-direction: column; }
+}
+</style>
+
+<div class="page" role="main">
+  <h2 class="sr-only" style="position:absolute;left:-9999px">Свадебное приглашение Любови и Егора — 19 августа 2025</h2>
+
+  <section class="hero">
+    <p class="hero-eyebrow">Приглашение на свадьбу</p>
+    <div class="hero-names">
+      <span>Любовь</span>
+      <div class="hero-amp">&amp;</div>
+      <span>Егор</span>
+    </div>
+    <div class="hero-ornament" aria-hidden="true"><div class="hero-dot"></div></div>
+    <p class="hero-date">19 — 21 августа 2025</p>
+    <p class="hero-sub">Глэмпинг · Norke Есенинская Русь</p>
+    <span class="hero-handwrite">наконец-то! 🎉</span>
+  </section>
+
+  <section class="photo-section">
+    <p class="photo-section-label">Всё началось давно</p>
+    <p class="photo-intro">Где-то там, в прошлом, росли два маленьких человека — понятия не имея, что судьба уже <em>всё решила за них</em>.</p>
+    <div class="photo-row">
+      <div>
+        <div class="photo-placeholder">
+          <div class="photo-placeholder-icon" aria-hidden="true"><i class="ti ti-photo"></i></div>
+          <p class="photo-placeholder-text">Детское фото Любы<br>— скоро появится</p>
+        </div>
+        <p class="photo-caption">маленькая Люба</p>
+      </div>
+      <div>
+        <div class="photo-placeholder">
+          <div class="photo-placeholder-icon" aria-hidden="true"><i class="ti ti-photo"></i></div>
+          <p class="photo-placeholder-text">Детское фото Егора<br>— скоро появится</p>
+        </div>
+        <p class="photo-caption">маленький Егор</p>
+      </div>
+    </div>
+    <p class="photo-intro" style="margin-top:30px; margin-bottom:18px">Прошло время — и они всё-таки <em>нашли друг друга</em>.</p>
+    <div class="photo-row">
+      <div>
+        <div class="photo-placeholder" style="height:260px">
+          <div class="photo-placeholder-icon" aria-hidden="true"><i class="ti ti-camera"></i></div>
+          <p class="photo-placeholder-text">Наше совместное фото<br>— появится здесь</p>
+        </div>
+        <p class="photo-caption">десять лет спустя</p>
+      </div>
+      <div>
+        <div class="photo-placeholder" style="height:260px">
+          <div class="photo-placeholder-icon" aria-hidden="true"><i class="ti ti-heart"></i></div>
+          <p class="photo-placeholder-text">Ещё одно наше фото<br>— скоро здесь</p>
+        </div>
+        <p class="photo-caption">и вот мы здесь</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-label">Приглашение</p>
+    <div class="invite-card">
+      <p class="invite-body">
+        Дорогой <em id="guestGreeting">[имя гостя]</em>,<br><br>
+        знаешь, говорят, что хорошее вино не торопится.
+        Мы с Егором решили проверить эту теорию на себе
+        и выдержали <strong>целых десять лет</strong>.<br><br>
+        Десять лет совместных завтраков, споров о том, куда поехать,
+        и одного дивана на двоих — и вот наконец мы официально
+        признаём, что это, кажется, <em>серьёзно</em>.<br><br>
+        18 августа мы тихо распишемся вдвоём.
+        А уже <em>19-го ждём тебя</em> — на природе, в хорошей компании,
+        с едой, вином и двумя днями, которые хочется запомнить.
+      </p>
+      <p class="invite-aside">Без галстуков, без протокола — просто все самые близкие люди под открытым небом. Именно так мы это и представляли.</p>
+      <span class="invite-handwrite">Очень ждём тебя ✦</span>
+    </div>
+    <div class="counter-strip">
+      <div class="counter-num-block">
+        <div class="counter-num">10</div>
+        <div class="counter-num-label">лет вместе</div>
+      </div>
+      <div class="counter-text-block">
+        <p class="counter-text">— и всего <strong>один раз в загс</strong>.<br>Статистически это очень эффективно.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-label">Как это будет</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">18<small>авг</small></div>
+        <div class="tl-line"></div>
+        <div>
+          <p class="tl-title">Официальная часть</p>
+          <p class="tl-body">Мы расписываемся вдвоём — тихо, по-своему, без зрителей. Этот момент только наш.</p>
+          <span class="tl-badge">только вдвоём</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">19<small>авг</small></div>
+        <div class="tl-line"></div>
+        <div>
+          <p class="tl-title">Приезжай в глэмпинг</p>
+          <p class="tl-body">Начало праздника — банкет, живое общение, природа вокруг. Время сбора: <em style="color:var(--burg)">[ указать ]</em></p>
+          <span class="tl-badge">банкет · природа</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">19–21<small>авг</small></div>
+        <div class="tl-line"></div>
+        <div>
+          <p class="tl-title">Два дня в Есенинской Руси</p>
+          <p class="tl-body">Проживание в глэмпинге — поля, рассветы, утренний кофе. Уезжать не захочется.</p>
+          <span class="tl-badge">2 ночи · проживание</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-label">Всё, что нужно знать</p>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-icon" aria-hidden="true"><i class="ti ti-map-pin"></i></div>
+        <p class="info-card-title">Место</p>
+        <p class="info-card-value">Norke<br>Есенинская Русь</p>
+        <a class="info-card-link" href="https://yandex.ru/maps/?text=Norke+Есенинская+Русь">Открыть на карте ↗</a>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon" aria-hidden="true"><i class="ti ti-calendar"></i></div>
+        <p class="info-card-title">Даты</p>
+        <p class="info-card-value">19 — 21 августа<br>2025</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon" aria-hidden="true"><i class="ti ti-clock"></i></div>
+        <p class="info-card-title">Время сбора</p>
+        <p class="info-card-value" style="font-style:italic;color:var(--text-light);font-size:15px">[ Будет добавлено ]</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon" aria-hidden="true"><i class="ti ti-car"></i></div>
+        <p class="info-card-title">Как добраться</p>
+        <p class="info-card-value" style="font-style:italic;color:var(--text-light);font-size:15px">[ Маршрут / трансфер ]</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-label">Важные мелочи</p>
+    <div class="gift-block">
+      <div class="gift-icon" aria-hidden="true"><i class="ti ti-bottle"></i></div>
+      <div>
+        <p class="gift-title">Цветы — нет, бутылка — да</p>
+        <p class="gift-text">Мы знаем, что цветы красивы. Но они завянут раньше, чем закончится медовый месяц. Поэтому просьба простая: <strong>принеси любимую бутылку</strong> — вино, виски, шампанское, наливку от бабушки. Мы обязательно откроем её вместе, и это будет вкуснее любого букета.</p>
+      </div>
+    </div>
+    <div class="dress-block">
+      <p class="dress-title"><i class="ti ti-shirt" aria-hidden="true" style="font-size:17px;vertical-align:-2px;margin-right:8px;color:var(--gold)"></i>Дресс-код</p>
+      <p class="dress-text">Мы в глэмпинге — трава под ногами, небо над головой. Хочется, чтобы всем было комфортно и фотографии получились гармоничными.</p>
+      <span class="dress-placeholder">[ Описание дресс-кода будет добавлено ]</span>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-label">Твой ответ</p>
+    <div class="form-wrap" id="rsvpForm">
+      <div class="field">
+        <label class="field-label">Придёшь?</label>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="attend" value="yes">
+            <span class="radio-label">Да, буду!</span>
+            <span class="radio-sub">Жди меня</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="attend" value="no">
+            <span class="radio-label">Увы, не смогу</span>
+            <span class="radio-sub">Буду в мыслях</span>
+          </label>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label">Предпочтения по меню</label>
+        <div class="placeholder-field">Варианты появятся здесь чуть позже</div>
+      </div>
+      <div class="field">
+        <label class="field-label">Предпочтения по алкоголю</label>
+        <div class="placeholder-field">Варианты алкоголя будут добавлены</div>
+      </div>
+      <div class="field">
+        <label class="field-label">Аллергии или ограничения в еде</label>
+        <textarea id="allergies" placeholder="Если есть — напиши, мы всё учтём"></textarea>
+      </div>
+      <div class="field">
+        <label class="field-label">Пожелания молодожёнам</label>
+        <textarea id="wishes" placeholder="Совет, напутствие или просто тёплые слова :)"></textarea>
+      </div>
+      <button class="submit-btn" onclick="handleSubmit()">Отправить ответ</button>
+    </div>
+    <div class="success-msg" id="successMsg">
+      <p class="success-title">Получили, спасибо!</p>
+      <p class="success-sub">Твой ответ у нас. Очень ждём встречи —<br>будет тепло, вкусно и хорошо.</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p class="footer-names">
+      <span>Любовь</span> <span class="footer-amp">&amp;</span> <span>Егор</span>
+    </p>
+    <p class="footer-sub">С любовью и нетерпением ждём тебя</p>
+    <span class="footer-handwrite">19 августа · Есенинская Русь 🌿</span>
+  </footer>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const guest = params.get('guest');
+  if (guest) { const el = document.getElementById('guestGreeting'); if (el) el.textContent = guest; }
+  function handleSubmit() {
+    const attend = document.querySelector('input[name="attend"]:checked');
+    if (!attend) { alert('Пожалуйста, укажи, придёшь ли ты'); return; }
+    document.getElementById('rsvpForm').style.display = 'none';
+    document.getElementById('successMsg').classList.add('show');
+  }
+</script>
